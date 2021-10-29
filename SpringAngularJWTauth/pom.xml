@@ -10,12 +10,12 @@
 		<version>2.5.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>com.roca12.misiontic2022</groupId>
 	<artifactId>spring-boot-security-jwt-mongodb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-security-jwt-mongodb</name>
-	<description>Demo project for Spring Boot Auth with Spring Security,
-		JWT, MongoDB</description>
+	<description>Demo project for Spring Boot Auth with Spring Security, JWT, MongoDB</description>
 
 	<properties>
 		<java.version>11</java.version>

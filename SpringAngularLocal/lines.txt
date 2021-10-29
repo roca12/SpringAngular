@@ -1,0 +1,8 @@
+1) abrir la consola e ir a la carpeta del proyecto
+2) docker build -t imagenclase .
+3) docker images
+4) docker run -p 8080:8080 -d imagenclase2
+5) docker ps -a
+6) buscar id
+7) docker start id
+s
