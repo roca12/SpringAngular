@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/Angular12Crud'),
+      dir: require('path').join(__dirname, './coverage/GXprimerSPA'),
       subdir: '.',
       reporters: [
         { type: 'html' },
