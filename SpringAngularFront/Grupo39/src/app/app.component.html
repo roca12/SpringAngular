@@ -4,4 +4,50 @@
 <h3 class="animate__animated animate__bounce">Soy un titulo grande</h3>
 <h4 class="animate__animated animate__bounce">Soy un titulo grande</h4>
 <h5 class="animate__animated animate__bounce  miestilo"> Soy un titulo grande</h5>
-<app-navbar></app-navbar>
+
+
+<h1>{{nombre}}</h1>
+{{numero}}
+{{booleano}}
+{{cualquiera}}
+<p>El resultado de la suma es: {{sumar(23,56)}}</p>
+
+<input [type]="nuevotipo" [value]="nombre">
+<h1 [hidden]="booleano"> holaaaaaaa</h1>
+
+<button (click)="cambiarTitulo()" class="btn btn-warning">Dame click</button>
+{{titulovacio}}
+
+BINDING
+
+<div *ngIf='sexoestudiante==="F"?true:false'>
+    La estudiante {{estudiante}} es de sexo femenino
+</div>
+<div *ngIf="sexoestudiante==='M'">
+    El estudiante {{estudiante}} es de sexo masculino
+</div>
+
+
+<button (click)="llenarLista()" class="btn btn-success">
+    Llenar lista
+</button>
+<table>
+    <tr>
+        <th>Numero aleatorio</th>
+    </tr>
+    <tr *ngFor="let numero of lista">{{numero}}</tr>
+</table>
+
+
+<button (click)="cambiarTema()" 
+[ngClass]="{'btn':sexoestudiante==='F'
+,'btn-danger':sexoestudiante==='F'}">
+    Soy un boton con estilo
+</button>
+
+<h1 [ngClass]="{'text-light':temaclaro==true,
+'bg-dark':temaclaro==true,
+'text-dark':temaclaro==false,
+'bg-light':temaclaro==false}">
+    Soy un titulo
+</h1>
