@@ -8,12 +8,12 @@
 		<version>2.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.grupo39.misiontic2022.ciclo4</groupId>
-	<artifactId>Tiburones39</artifactId>
+	<groupId>com.equipox.misiontic2022.tiendasgenericas</groupId>
+	<artifactId>tiendaslostiburones</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Tiburones39</name>
-	<description>Proyecto de entrenamiento en java con spring y mongodb</description>
+	<name>tiendaslostiburones</name>
+	<description>Proyecto de entrenamiento en spring con mongodb</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -36,6 +36,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
 
