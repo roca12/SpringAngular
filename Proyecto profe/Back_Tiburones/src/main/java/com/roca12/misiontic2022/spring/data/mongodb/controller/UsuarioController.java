@@ -52,6 +52,8 @@ public class UsuarioController {
 		}
 
 	}
+	
+	
 	 @GetMapping("/usuarios/{id}")
 	  public ResponseEntity<Usuario> getUsuariosById(@PathVariable("id") String id) {
 	    Optional<Usuario> usuarioData = usuarioRepository.findById(id);
