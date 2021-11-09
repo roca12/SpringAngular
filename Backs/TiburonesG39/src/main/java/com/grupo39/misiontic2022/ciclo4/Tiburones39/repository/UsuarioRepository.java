@@ -10,6 +10,6 @@ public interface UsuarioRepository extends MongoRepository<Usuario, String>{
 	
 	List<Usuario> findByUsername(String username);
 	
-	List<Usuario> findByNombre_completo(String nombre_completo);
+	//List<Usuario> findByNombre_completo(String nombre_completo);
 
 }

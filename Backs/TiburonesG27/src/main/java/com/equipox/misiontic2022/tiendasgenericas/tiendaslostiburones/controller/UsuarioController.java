@@ -1,4 +1,4 @@
-package com.grupo39.misiontic2022.ciclo4.Tiburones39.controller;
+package com.equipox.misiontic2022.tiendasgenericas.tiendaslostiburones.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grupo39.misiontic2022.ciclo4.Tiburones39.model.Usuario;
-import com.grupo39.misiontic2022.ciclo4.Tiburones39.repository.UsuarioRepository;
+import com.equipox.misiontic2022.tiendasgenericas.tiendaslostiburones.model.Usuario;
+import com.equipox.misiontic2022.tiendasgenericas.tiendaslostiburones.repository.UsuarioRepository;
+
+
 
 
 
@@ -71,7 +73,7 @@ public class UsuarioController {
 	  public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario user) {
 	    try {
 	      Usuario _usuario = usuarioRepository.save(new Usuario(user.getUsername(),
-	    		  user.getPassword(),user.getNombre_completo(),user.getEmail()));
+	    		  user.getPassword(),user.getNombreusuario(),user.getEmailusuario()));
 	      return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -1,4 +1,4 @@
-package com.grupo39.misiontic2022.ciclo4.Tiburones39;
+package com.equipox.misiontic2022.tiendasgenericas.tiendaslostiburones;
 
 import java.util.Collections;
 import org.springframework.context.annotation.Bean;
