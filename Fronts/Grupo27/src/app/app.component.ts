@@ -1,35 +1,25 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Login';
+export class AppComponent implements OnInit {
 
-  listausuarios=["diego","sergio","admin","user"];
-  listapass=["diego","sergio","admin","user"];
+  res: any;
+  contenido: any;
+  urlapi: string = "http://universities.hipolabs.com/search?country=Colombia";
 
+  constructor(private objetohttp: HttpClient) { }
 
-  user_correcto: string = "admininicial";
-  pass_correcto: string = "admin123456";
-
-  user: string = "";
-  pass: string = "";
-
-  correcto: number=-1;
-  comparar() {
-    if (this.user === this.user_correcto) {
-      this.correcto = 1;
-      if (this.pass === this.pass_correcto) {
-        this.correcto = 1;
-      } else {
-        this.correcto = 0;
-      }
-    } else {
-      this.correcto = 0;
+  ngOnInit() {
+    this.res = this.objetohttp.get(this.urlapi);
+    this.res.subscribe((data: any[]) => {
+      this.contenido = data;
+      console.log(this.contenido);
     }
-
+    );
   }
 }

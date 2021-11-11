@@ -1,55 +1,21 @@
-<!-- Estoy trayendo el codigo del componente navbar-->
-<app-navbar></app-navbar>
+{{res}}
+{{contenido[0].name}}
 
-
-<div class="container">
-    <div>
-
-        <div class="position-absolute top-50 start-50 translate-middle mt-5">
-            <h1><i class="fas fa-sign-in-alt"></i> Login del sistema</h1>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">
-                            <i class="fas fa-user-shield"></i>
-
-                        </span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                            aria-describedby="basic-addon1" [(ngModel)]="user">
-                    </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">
-                            <i class="fas fa-key"></i>
-
-                        </span>
-                        <input type="password" class="form-control" placeholder="Password" aria-label="Password"
-                            aria-describedby="basic-addon1" [(ngModel)]="pass">
-                    </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <button class="btn btn-success" (click)="comparar()">
-                        Iniciar sesión
-                    </button>
-                </div>
-            </div>
-
-            <!-- Alertas -->
-            <div *ngIf="correcto==1" class="alert alert-success 
-            animate__animated animate__bounceInLeft" role="alert">
-                Acceso correcto, redirigiendo al sistema
-            </div>
-            <div *ngIf="correcto==0" class="alert alert-danger 
-            animate__animated animate__bounceInLeft" role="alert">
-                Usuario o contraseña incorrecta
-            </div>
-        </div>
-    </div>
-</div>
+<table class="table table-bordered table-striped table-hover">
+<thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Pais</th>
+        <th>Dominio</th>
+        <th>Pagina web</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let universidad of contenido">
+    <td>{{universidad.name}}</td>
+    <td>{{universidad.country}}</td>
+    <td>{{universidad.domains[0]}}</td>
+    <td>{{universidad.web_pages[0]}}</td>
+    </tr>
+</tbody>
+</table>
