@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+class DataTablesResponse {
+  data!: any[];
+  draw!: number;
+  recordsFiltered!: number;
+  recordsTotal!: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -9,56 +16,86 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
 
-  //////////////GET////////////
 
-  //OBJETO OBSERVABLE
   res: any;
 
-  //OBJETO QUE ALMACENARA EL CONTENIDO DEL JSON
-  content: any;
+  contenido: any;
 
-  //ERROR POSIBLE
-  errorMessage: any;
+  urlapi: string = "http://universities.hipolabs.com/search?name=middle";
 
-  //URL DE LA REST API
-  REST_API_SERVER = "http://universities.hipolabs.com/search?country=Colombia";
 
-  //INICIALIZANDO OBJETO CLIENTE 
-  constructor(private http: HttpClient) { }
+  constructor(private objetohttp: HttpClient) { }
+
 
   //FUNCIÓN DE CONTROL DE ERRORES
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Error desconocido!';
     if (error.error instanceof ErrorEvent) {
       // Errores del lado del cliente
-      errorMessage = 
-      `Error: ${error.error.message}
-      \n 
-      ${error.status}`;
+      errorMessage = `Error: ${error.error.message}\n ${error.status}`;
     } else {
       // Errores del lado del servidor
-      errorMessage = 
-      `Codigo de Error: ${error.status}
-      \n
-      Mensaje: ${error.message}`;
+      errorMessage = `Codigo de Error: ${error.status} \nMensaje: ${error.message}`;
     }
     //MOSTRANDO UN ERROR EN UNA ALERTA
     //window.alert(errorMessage);
     return throwError(errorMessage);
   }
-  
-  //FUNCIÓN DE INICIALIZACIÓN ANTES DE CARGAR LA PAGINA
-  ngOnInit() {
-    
-    this.res = this.http.get(this.REST_API_SERVER).pipe(catchError(this.handleError));
-    this.res.subscribe((data: any[]) => {
-      this.content = data;
-      console.log(this.content);
-    })
 
-    
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 
+  ngOnInit(): void {
+    //utilizando el servicio en la url
+    this.res = this.objetohttp.get(this.urlapi).pipe(catchError(this.handleError));
+    //suscribe el archivo json y lo convierte
+
+    this.res.subscribe((datos: any[]) => {
+      this.contenido = datos;
+      console.log(this.contenido);
+      this.dtTrigger.next();
+    });
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      columns: [{
+        title: 'Code',
+      }, {
+        title: 'Nombre',
+      }, {
+        title: 'Pais',
+      }],
+      pageLength:10,
+      responsive:true,
+      language:{
+        processing: "Procesando...",
+        search: "Buscar:",
+        lengthMenu: "Mostrar _MENU_ elementos",
+        info: "Mostrando desde _START_ al _END_ de _TOTAL_ elementos",
+        infoEmpty: "Mostrando ningún elemento.",
+        infoFiltered: "(filtrado _MAX_ elementos total)",
+        infoPostFix: "",
+        loadingRecords: "Cargando registros...",
+        zeroRecords: "No se encontraron registros",
+        emptyTable: "No hay datos disponibles en la tabla",
+        paginate: {
+          first: "Primero",
+          previous: "Anterior",
+          next: "Siguiente",
+          last: "Último"
+        },
+        aria: {
+          sortAscending: ": Activar para ordenar la tabla en orden ascendente",
+          sortDescending: ": Activar para ordenar la tabla en orden descendente"
+        }
+      }
+    };
+
+  }
 }
+
 

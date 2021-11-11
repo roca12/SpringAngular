@@ -1,0 +1,8 @@
+{
+    "workbench.editor.restoreViewState": false,
+    "files.restoreUndoStack": false,
+    "zenMode.restore": false,
+    "remote.restoreForwardedPorts": false,
+    "workbench.startupEditor": "none",
+    "editor.minimap.enabled": false
+}
