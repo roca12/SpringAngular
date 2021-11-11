@@ -1,0 +1,23 @@
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Pais</th>
+    <th>Pagina</th>
+    <th>Dominio</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let universidad of content">
+    <td>{{universidad.name}}</td>
+    <td>{{universidad.country}}</td>
+    <td>{{universidad.web_pages[0]}}</td>
+    <td>{{universidad.domains[0]}}</td>
+  </tr>
+</tbody>
+
+</table>
+
+
+
+

@@ -22,10 +22,6 @@ import com.equipox.misiontic2022.tiendasgenericas.tiendaslostiburones.model.Usua
 import com.equipox.misiontic2022.tiendasgenericas.tiendaslostiburones.repository.UsuarioRepository;
 
 
-
-
-
-
 @CrossOrigin(origins = "*")
 //@CrossOrigin(origins = "http://localhost:8081")
 @RestController

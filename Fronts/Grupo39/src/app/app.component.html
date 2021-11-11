@@ -1,3 +1,58 @@
+{{suma}}
+{{res}}
+{{contenido[0].name}}
+{{contenido[0].domains[0]}}
+{{contenido[0].web_pages[0]}}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Codigo Pais</th>
+            <th>Nombre</th>
+            <th>Pais</th>
+            <th>Dominio</th>
+            <th>Pagina WEB</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let universidad of contenido">
+            <td [ngClass]="{'text-primary':universidad.alpha_two_code=='US',
+            'text-danger':universidad.alpha_two_code!='US'}">
+                {{universidad.alpha_two_code}}
+            </td>
+            <td>{{universidad.name}}</td>
+            <td>{{universidad.country}}</td>
+            <td>{{universidad.domains[0]}}</td>
+            <td>{{universidad.web_pages[0]}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
 <h1 class="animate__animated animate__backInLeft">Soy un titulo grande</h1>
 
 <h2 class="animate__animated animate__backInLeft">Soy un titulo grande</h2>
@@ -51,3 +106,5 @@ BINDING
 'bg-light':temaclaro==false}">
     Soy un titulo
 </h1>
+
+-->
