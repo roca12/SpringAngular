@@ -1,7 +1,15 @@
-{{res}}
-{{contenido[0].name}}
+<input type="text" [(ngModel)]="nombre">
+<input type="text" [(ngModel)]="correo">
+<input type="text" [(ngModel)]="user">
+<input type="text" [(ngModel)]="pass">
 
-<table class="table table-bordered table-striped table-hover">
+
+<button (click)="postData()">
+    Enviar
+</button>{{codigoRespuesta}}
+
+<table class="table 
+table-bordered table-striped table-hover">
 <thead>
     <tr>
         <th>Nombre</th>

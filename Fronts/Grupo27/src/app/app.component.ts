@@ -22,4 +22,26 @@ export class AppComponent implements OnInit {
     }
     );
   }
+
+
+  //post
+  nombre!: string; 
+  correo!: string; 
+  user!: string;
+  pass!: string;
+
+  codigoRespuesta!: number;
+  postData() {
+    this.objetohttp.post<any>(
+      "http://localhost:8080/api/usuarios",
+      {
+        nombre_completo: this.nombre,
+        email:this.correo ,
+        username: this.user,
+        password: this.pass
+      }, { observe: 'response' }
+    ).subscribe(response => {
+      this.codigoRespuesta = response.status;
+    });
+  }
 }
