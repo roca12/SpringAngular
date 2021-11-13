@@ -1,8 +1,14 @@
-{{suma}}
-{{res}}
-{{contenido[0].name}}
-{{contenido[0].domains[0]}}
-{{contenido[0].web_pages[0]}}
+
+<input type="text" [(ngModel)]="username">
+<input type="text" [(ngModel)]="password">
+<input type="text" [(ngModel)]="name">
+<input type="text" [(ngModel)]="email">
+
+
+<button (click)="postData()">
+    Dame click 
+</button>
+{{codigoRespuesta}}
 
 <table class="table table-striped">
     <thead>

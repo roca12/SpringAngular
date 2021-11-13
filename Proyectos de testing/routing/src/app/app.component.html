@@ -1,5 +1,16 @@
 
-
+<app-file-upload></app-file-upload>
+<button (click)="postData()">
+enviar
+</button>
+{{codigoRespuesta}}
+{{res2}}
+<br>
+<br>
+<br>
+<br>
+-----------------------------------------------------------------------------------
+<br>
 <table class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
   <tbody>
     <tr *ngFor="let universidad of contenido">

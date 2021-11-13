@@ -1,2 +1,29 @@
-<div class=" content"></div>
+<div class=" content">
 
+
+  <div class="text-center">
+    <input class="form-control" type="file" (change)="onChange($event)">
+
+    <button (click)="onUpload()" class="btn btn-success">
+      Upload
+    </button>
+    {{recibido}}
+  </div>
+  <div class="container">
+    <h3 *ngFor="let dato of resultados; let i = index">
+      Dato {{i}} obtuvo codigo {{dato[0]}}
+    </h3>
+  </div>
+
+
+  <table class="compact nowrap table table-dark table-hover" datatable [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger">
+    <tbody>
+      <tr *ngFor="let universidad of contenido" class="">
+        <td>{{universidad.alpha_two_code}}</td>
+        <td>{{universidad.name}}</td>
+        <td>{{universidad.country}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

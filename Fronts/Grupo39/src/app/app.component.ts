@@ -27,10 +27,10 @@ export class AppComponent implements OnInit {
     let errorMessage = 'Error desconocido!';
     if (error.error instanceof ErrorEvent) {
       // Errores del lado del cliente
-      errorMessage =`Error: ${error.error.message}\n ${error.status}`;
+      errorMessage = `Error: ${error.error.message}\n ${error.status}`;
     } else {
       // Errores del lado del servidor
-      errorMessage =`Codigo de Error: ${error.status} \nMensaje: ${error.message}`;
+      errorMessage = `Codigo de Error: ${error.status} \nMensaje: ${error.message}`;
     }
     //MOSTRANDO UN ERROR EN UNA ALERTA
     //window.alert(errorMessage);
@@ -49,6 +49,38 @@ export class AppComponent implements OnInit {
     });
 
   }
+
+
+  /////////////////////////////////////////////////////////////////
+  codigoRespuesta!: number;
+  res2: any;
+
+  username!:string;
+  password!:string;
+  name!:string;
+  email!:string;
+  postData() {
+    this.objetohttp.post<any>(
+      'http://localhost:8080/api/usuarios',
+      {
+        nombre_completo:this.name,
+        email: this.email,
+        username: this.username,
+        password: this.password
+      },
+      { observe: 'response' }
+    ).subscribe(response=>{
+      this.codigoRespuesta=response.status;
+      this.res2=response;
+    });
+
+  }
+
+
+
+
+
+
 }
 
 

@@ -6,10 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataTablesModule } from 'angular-datatables';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +19,6 @@ import { DataTablesModule } from 'angular-datatables';
     FormsModule,
     HttpClientModule,
     DataTablesModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
