@@ -54,7 +54,6 @@ export class AppComponent implements OnInit {
   /////////////////////////////////////////////////////////////////
   codigoRespuesta!: number;
   res2: any;
-
   username!:string;
   password!:string;
   name!:string;
