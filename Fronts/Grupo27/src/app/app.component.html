@@ -1,29 +1,6 @@
-<input type="text" [(ngModel)]="nombre">
-<input type="text" [(ngModel)]="correo">
-<input type="text" [(ngModel)]="user">
-<input type="text" [(ngModel)]="pass">
 
+<app-navbar></app-navbar>
 
-<button (click)="postData()">
-    Enviar
-</button>{{codigoRespuesta}}
+<router-outlet></router-outlet>
 
-<table class="table 
-table-bordered table-striped table-hover">
-<thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Pais</th>
-        <th>Dominio</th>
-        <th>Pagina web</th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let universidad of contenido">
-    <td>{{universidad.name}}</td>
-    <td>{{universidad.country}}</td>
-    <td>{{universidad.domains[0]}}</td>
-    <td>{{universidad.web_pages[0]}}</td>
-    </tr>
-</tbody>
-</table>
+<app-footer></app-footer>
