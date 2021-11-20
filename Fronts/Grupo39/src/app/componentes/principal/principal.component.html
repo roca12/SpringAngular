@@ -1,0 +1,15 @@
+<div class="text-center">
+    <input class=" form-control"
+    type="file" (change)="onChange($event)">
+
+    <button (click)="onUpload()" class="btn btn-success">
+        Subir archivo
+    </button>
+
+    <div class="container">
+        <h3 *ngFor="let dato of resultados; let i=index">
+            Dato {{i}} obtuvo codigo {{dato}}
+        </h3>
+    </div>
+
+</div>
