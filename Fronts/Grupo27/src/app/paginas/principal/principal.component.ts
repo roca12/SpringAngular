@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PrincipalService } from '../principal.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor() { }
+  constructor(private principalservice: PrincipalService) { }
+
+  resultados: any;
+  file!: File;
+
+  onChange(event: any) {
+    this.file = event.target.files[0];
+  }
+
+  async onUpload() {
+    this.resultados = await this.principalservice.upload(this.file);
+    console.log(this.resultados);
+  }
 
   ngOnInit(): void {
   }
