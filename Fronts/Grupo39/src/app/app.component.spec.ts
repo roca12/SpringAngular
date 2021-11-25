@@ -1,12 +1,15 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [
         AppComponent
@@ -14,6 +17,9 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  afterEach(()=>{
+    console.log("Pruebas finalizadas")
+  })
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
@@ -26,10 +32,25 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Grupo39');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Grupo39 app is running!');
+  it('Verificar si el numero es par',()=>{
+    let par=false;
+    if (7%2==0){
+      par=true;
+    }else{
+      par=false;
+    }
+    expect(par).toBeTruthy();
   });
+
+  it('Le gusta la pizza con piña ',()=>{
+    let gustos_de_lino=true;
+    expect(gustos_de_lino).toBeFalse()
+
+  })
+
+  it ('hace parte del grupo 39',()=>{
+    let lista =["heinner","jesus","juan diego","Lina"];
+    expect(lista).toContain("Lina");
+  })
+
 });

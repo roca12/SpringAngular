@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  title="Grupo39";
   res: any;
 
   contenido: any;
