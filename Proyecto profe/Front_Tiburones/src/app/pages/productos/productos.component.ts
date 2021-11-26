@@ -25,22 +25,7 @@ export class ProductosComponent implements OnInit {
   //variable contenedora de contenidos
   contenido: any;
   //url api get
-  urlapiGET: string = "http://universities.hipolabs.com/search?name=middle";
-
-  //FUNCIÓN DE CONTROL DE ERRORES
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Error desconocido!';
-    if (error.error instanceof ErrorEvent) {
-      // Errores del lado del cliente
-      errorMessage = `Error: ${error.error.message}\n ${error.status}`;
-    } else {
-      // Errores del lado del servidor
-      errorMessage = `Codigo de Error: ${error.status} \nMensaje: ${error.message}`;
-    }
-    //MOSTRANDO UN ERROR EN UNA ALERTA
-    //window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
+  urlapiGET: string = "http://localhost:8080/api/productos";
 
   //aliminando objeto revisor de cambios de la tabla
   ngOnDestroy(): void {
@@ -53,9 +38,8 @@ export class ProductosComponent implements OnInit {
 
   //FUNCIÓN DE EJECUCIÓN ANTES DE LA CARGA DE LA PAGINA
   ngOnInit(): void {
-    //utilizando el servicio en la url
-    this.res = this.objetohttp.get(this.urlapiGET).pipe(catchError(this.handleError));
 
+    this.res = this.objetohttp.get(this.urlapiGET);
     //suscribe el archivo json y lo convierte   
     this.res.subscribe((datos: any[]) => {
       this.contenido = datos;
@@ -67,12 +51,24 @@ export class ProductosComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       columns: [{
-        title: 'Code',
-      }, {
+        title: 'Codigo',
+      }, 
+      {
+        title: 'Iva',
+      },
+      {
+        title: 'NIT proveedor',
+      },
+      {
         title: 'Nombre',
-      }, {
-        title: 'Pais',
-      }],
+      },
+      {
+        title: 'Precio compra',
+      },
+      {
+        title: 'Precio venta',
+      },
+    ],
       pageLength: 10,
       responsive: true,
       language: {
@@ -101,7 +97,6 @@ export class ProductosComponent implements OnInit {
   }
 
   ///////////////// POST /////////////////////////////
-  codigoRespuesta: number = 0;
   res2: any;
 
   //lista que almacenara los resultados de la insercion de cada linea
@@ -110,9 +105,7 @@ export class ProductosComponent implements OnInit {
   // Variable to store shortLink from api response
   file!: File; //variable para almacenar los datos
 
-  //variable de confimación de recepcion de archivo
-  recibido: boolean = false;
-
+z
   // En caso de seleccionar archivo, escojer el primer archivo
   onChange(event: any) {
     this.file = event.target.files[0];

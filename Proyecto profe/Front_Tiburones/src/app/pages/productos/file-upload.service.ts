@@ -8,49 +8,44 @@ import { ProductosComponent } from './productos.component';
 
 export class FileUploadService {
 
-  // API url
-  baseApiUrl = "http://localhost:8080/api/usuarios";
+  apiURL:string ="http://localhost:8080/api/productos";
+  
+  constructor(private httpobject:HttpClient) { }
 
-  //inicializando objeto http
-  constructor(private http: HttpClient) { }
+  resultados=Array();
 
-  //variable auxiliar que almacena resultados de cada envio
-  resultados = Array();
+  upload(file:any):Promise<any[]>{
+      return new Promise<any[]>(
+        (resolve,reject)=>{
+          var lector = new FileReader();
+          lector.onloadend=(e)=>{
+            let contenido :string = lector.result as string;
+            let lineas_separadas=contenido.split("\n");
 
-  // Retorna un objeto observable
-  upload(file: any): Promise<any[]> {
-    return new Promise<any[]>((resolve, reject) => {
-      //leyendo el contenido
-      var reader = new FileReader();
-      reader.onloadend = (e) => {
+            for (let linea_actual of lineas_separadas){
+              linea_actual.replace(";",",");
+              let columnas = linea_actual.split(",");
 
-        let lines = reader.result as string;
-
-        let separados = lines.split("\n");
-
-        for (let lineaactual of separados) {
-          lineaactual.replace(";", ",");
-          let columnas = lineaactual.split(",", 4);
-          this.http.post(
-            this.baseApiUrl,
-            {
-              email: columnas[3],
-              nombre_completo: columnas[2],
-              password: columnas[1],
-              username: columnas[0]
-            },
-            { observe: 'response' }).subscribe(
-              (response: any) => {
-                let resaux = [];
-                resaux[0] = response.status;
-                this.resultados.push(resaux);
-              }
-            );
+              this.httpobject.post(this.apiURL,
+              {
+                "codigoproducto":columnas[0],
+                "nombreproducto":columnas[1],
+                "nitproveedor":columnas[2],
+                "preciocompra":columnas[3],
+                "ivacompra":columnas[4],
+                "precioventa":columnas[5]
+              },{
+                observe:'response'
+              }).subscribe(
+                (response:any)=>{
+                  this.resultados.push(response.status);
+                }
+              );
+            }
+            resolve(this.resultados);
+          }
+          lector.readAsText(file);
         }
-        //console.log(this.resultados);
-        resolve(this.resultados);
-      };
-      reader.readAsText(file);
-    });
+      );
   }
 }

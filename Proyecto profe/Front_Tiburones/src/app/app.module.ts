@@ -35,7 +35,14 @@ import { ConsolidacionComponent } from './pages/consolidacion/consolidacion.comp
     HttpClientModule,
     DataTablesModule
   ],
-  declarations: [AppComponent, AdminLayoutComponent, LoginComponent, ProductosComponent, ClientesComponent, VentasComponent, ReportesComponent, ConsolidacionComponent],
+  declarations: [AppComponent,
+     AdminLayoutComponent, 
+     LoginComponent, 
+     ProductosComponent, 
+     ClientesComponent, 
+     VentasComponent, 
+     ReportesComponent, 
+     ConsolidacionComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

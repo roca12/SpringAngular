@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
       if (this.pass === this.passcorrecto) {
         this.correcto = 1;
         this.showNotification('top', 'right',1);
-
-        this.router.navigate(['/clientes'])
+        
+        this.router.navigate(['/dashboard'])
       } else {
         this.correcto = 0;
         this.showNotification('top', 'right',2);

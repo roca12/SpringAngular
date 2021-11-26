@@ -1,2 +1,54 @@
-<div class=" content"></div>
+<div class=" content">
 
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class=" card">
+            <div class=" card-header">
+                <h4 class=" card-title"> <i class="fas fa-file-upload"></i> Inserción de nuevos clientes</h4>
+            </div>
+            <div class=" card-body">
+                <div class="text-center">
+
+                    <button class="btn btn-success">
+                        <i class="fas fa-file-upload"></i> Crear cliente
+                    </button>
+                </div>
+                <!--
+            <div class="alert alert-success" role="alert" >
+              obtuvo codigo : Dato insertado correctamente
+            </div>
+            <div class="alert alert-warning" role="alert" >
+              obtuvo codigo : Error del servidor, comuniquese con el administrador
+            </div>
+            <div class="alert alert-danger" role="alert" >
+              obtuvo codigo : Error  en la solicitud
+            </div>
+          -->
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class=" card">
+            <div class=" card-header">
+                <h4 class=" card-title"><i class="fas fa-table"></i> Tabla de productos</h4>
+            </div>
+            <div class=" card-body">
+                <div class="container">
+                    <table class="compact nowrap stripe hover" datatable [dtOptions]="dtOptions"
+                        [dtTrigger]="dtTrigger">
+                        <tbody>
+                            <tr *ngFor="let producto of contenido" class="">
+                                <td class="text-center">{{producto.codigoproducto}}</td>
+                                <td class="text-center">{{producto.ivacompra}}</td>
+                                <td class="text-center">{{producto.nitproveedor}}</td>
+                                <td>{{producto.nombreproducto}}</td>
+                                <td class="text-center">{{producto.preciocompra}}</td>
+                                <td class="text-center">{{producto.precioventa}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,29 +1,63 @@
 <div class=" content">
 
 
-  <div class="text-center">
-    <input class="form-control" type="file" (change)="onChange($event)">
-
-    <button (click)="onUpload()" class="btn btn-success">
-      Upload
-    </button>
-    {{recibido}}
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+    <div class=" card">
+      <div class=" card-header">
+        <h4 class=" card-title"> <i class="fas fa-file-upload"></i> Carga de archivo CSV</h4>
+      </div>
+      <div class=" card-body">
+        <div class="text-center">
+          <input class="form-control" type="file" (change)="onChange($event)" accept=".csv">
+          <button (click)="onUpload()" class="btn btn-success">
+            <i class="fas fa-file-upload"></i> Cargar archivo
+          </button>
+        </div>
+        <!--
+          <div class="alert alert-success" role="alert" >
+            obtuvo codigo : Dato insertado correctamente
+          </div>
+          <div class="alert alert-warning" role="alert" >
+            obtuvo codigo : Error del servidor, comuniquese con el administrador
+          </div>
+          <div class="alert alert-danger" role="alert" >
+            obtuvo codigo : Error  en la solicitud
+          </div>
+        -->
+        <h3 *ngFor="let dato of resultados; let i = index">
+          <div class="alert alert-success" role="alert" *ngIf="dato==201">
+            Dato {{i}} obtuvo codigo {{dato}}: Dato insertado correctamente
+          </div>
+          <div class="alert alert-success" role="alert" *ngIf="dato==500">
+            Dato {{i}} obtuvo codigo {{dato}}: Error del servidor, comuniquese con el administrador
+          </div>
+          <div class="alert alert-success" role="alert" *ngIf="dato==400 || dato==404">
+            Dato {{i}} obtuvo codigo {{dato}}: Error  en la solicitud
+          </div>
+        </h3>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+      <div class=" card">
+        <div class=" card-header">
+          <h4 class=" card-title"><i class="fas fa-table"></i> Tabla de productos</h4>
+        </div>
+        <div class=" card-body">
+          <div class="container">
+            <table class="compact nowrap stripe hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+              <tbody>
+                <tr *ngFor="let producto of contenido" class="">
+                  <td class="text-center">{{producto.codigoproducto}}</td>
+                  <td class="text-center">{{producto.ivacompra}}</td>
+                  <td class="text-center">{{producto.nitproveedor}}</td>
+                  <td>{{producto.nombreproducto}}</td>
+                  <td class="text-center">{{producto.preciocompra}}</td>
+                  <td class="text-center">{{producto.precioventa}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="container">
-    <h3 *ngFor="let dato of resultados; let i = index">
-      Dato {{i}} obtuvo codigo {{dato[0]}}
-    </h3>
-  </div>
-
-
-  <table class="compact nowrap table table-dark table-hover" datatable [dtOptions]="dtOptions"
-    [dtTrigger]="dtTrigger">
-    <tbody>
-      <tr *ngFor="let universidad of contenido" class="">
-        <td>{{universidad.alpha_two_code}}</td>
-        <td>{{universidad.name}}</td>
-        <td>{{universidad.country}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
