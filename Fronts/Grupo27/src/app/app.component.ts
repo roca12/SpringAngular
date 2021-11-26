@@ -7,13 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title:string="Grupo27"
+
 
   res: any;
   contenido: any;
   urlapi: string = "http://universities.hipolabs.com/search?country=Colombia";
 
   constructor(private objetohttp: HttpClient) { }
-
+  
   ngOnInit() {
     this.res = this.objetohttp.get(this.urlapi);
     this.res.subscribe((data: any[]) => {
