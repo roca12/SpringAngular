@@ -1,6 +1,7 @@
 package com.roca12.misiontic2022.spring.data.mongodb.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "clientes")
@@ -8,6 +9,8 @@ public class Cliente {
 	
 	@Id
 	private String id ;
+	
+	@Indexed(unique=true)
 	private long cedulacliente;
 	private String direccioncliente;
 	private String emailcliente;

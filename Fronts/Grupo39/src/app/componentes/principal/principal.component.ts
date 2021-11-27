@@ -22,7 +22,9 @@ export class PrincipalComponent implements OnInit {
     console.log(this.resultados);
   }
 
+  lista=["jhon","lina","jesus"]
   ngOnInit(): void {
+
   }
 
 }

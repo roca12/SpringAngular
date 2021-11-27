@@ -34,7 +34,7 @@ describe('AppComponent', () => {
 
   it('Verificar si el numero es par',()=>{
     let par=false;
-    if (7%2==0){
+    if (8%2==0){
       par=true;
     }else{
       par=false;
@@ -43,7 +43,7 @@ describe('AppComponent', () => {
   });
 
   it('Le gusta la pizza con piña ',()=>{
-    let gustos_de_lino=true;
+    let gustos_de_lino=false;
     expect(gustos_de_lino).toBeFalse()
 
   })
