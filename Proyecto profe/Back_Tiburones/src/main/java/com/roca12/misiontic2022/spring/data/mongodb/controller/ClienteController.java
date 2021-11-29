@@ -110,7 +110,7 @@ public class ClienteController {
 							client.getTelefonocliente()));
 			return new ResponseEntity<>(_cliente, HttpStatus.CREATED);
 		} catch (DuplicateKeyException e) {
-			return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+			return new ResponseEntity<>(null, HttpStatus.IM_USED);
 		}catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
