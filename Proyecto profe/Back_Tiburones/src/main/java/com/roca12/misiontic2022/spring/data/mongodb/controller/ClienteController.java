@@ -60,7 +60,7 @@ public class ClienteController {
 		if (clienteData.isPresent()) {
 			return new ResponseEntity<>(clienteData.get(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 	@GetMapping("/clientes/nombre/{nombre}")
@@ -71,7 +71,7 @@ public class ClienteController {
 		if (clienteData.isPresent()) {
 			return new ResponseEntity<>(clienteData.get(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 	@GetMapping("/clientes/email/{email}")
@@ -82,7 +82,7 @@ public class ClienteController {
 		if (clienteData.isPresent()) {
 			return new ResponseEntity<>(clienteData.get(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class ClienteController {
 		if (clienteData.isPresent()) {
 			return new ResponseEntity<>(clienteData.get(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 
@@ -133,7 +133,7 @@ public class ClienteController {
 			
 			return new ResponseEntity<>(clienteRepository.save(_cliente), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 	
@@ -153,7 +153,7 @@ public class ClienteController {
 			
 			return new ResponseEntity<>(clienteRepository.save(_cliente), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 

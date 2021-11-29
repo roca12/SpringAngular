@@ -14,12 +14,6 @@ export const ROUTES: RouteInfo[] = [
     class: ''
   },
   {
-    path: '/login',
-    title: 'Inciar Sesión',
-    icon: 'icon-key-25',
-    class: ''
-  },
-  {
     path: '/productos',
     title: 'Productos',
     icon: 'icon-molecule-40',

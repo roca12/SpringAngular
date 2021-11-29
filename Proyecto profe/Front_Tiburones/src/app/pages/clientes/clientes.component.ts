@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-clientes',
@@ -9,30 +10,157 @@ import { Subject } from 'rxjs';
 })
 export class ClientesComponent implements OnInit {
 
+  constructor(private objetohttp: HttpClient, private toastr: ToastrService) { }
 
-  //Función constructora
-  constructor(private objetohttp: HttpClient) { }
-
-  ///////////////// GET /////////////////////////////
-  //opciones y objeto revisor de la tabla
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
-  //variable receptora de documentos
   res: any;
-  //variable contenedora de contenidos
   contenido: any;
-  //url api get
   urlapiGET: string = "http://localhost:8080/api/clientes";
 
-  //aliminando objeto revisor de cambios de la tabla
+  cedulainsert!: string;
+  direccioninsert!: string;
+  emailinsert!: string;
+  nombreinsert!: string;
+  telefonoinsert!: string;
+  codepost!: number;
+
+  insertarCliente() {
+    this.objetohttp.post(this.urlapiGET,
+      {
+        "cedulacliente": this.cedulainsert,
+        "direccioncliente": this.direccioninsert,
+        "emailcliente": this.emailinsert,
+        "nombrecliente": this.nombreinsert,
+        "telefonocliente": this.telefonoinsert
+      }, {
+      observe: 'response'
+    }).subscribe(
+      (response: any) => {
+
+        this.codepost = response.status;
+
+        switch (this.codepost) {
+          case 201:
+            this.showNotification('top', 'right', 1);
+            break;
+
+          case 226:
+            this.showNotification('top', 'right', 2);
+            break;
+
+          case 500:
+            this.showNotification('top', 'right', 3);
+            break;
+
+        }
+        this.cedulainsert = "";
+        this.direccioninsert = "";
+        this.emailinsert = "";
+        this.nombreinsert = "";
+        this.telefonoinsert = "";
+      }
+    );
+  }
+
+  ceduladelete!: string;
+  codedelete!: number;
+  eliminarCliente() {
+    this.objetohttp.delete(this.urlapiGET + "/cedula/" + this.ceduladelete, {
+      observe: 'response'
+    }).subscribe(
+      (response: any) => {
+
+        this.codedelete = response.status;
+
+        switch (this.codedelete) {
+          case 202:
+            this.showNotification('top', 'right', 4);
+            break;
+
+          case 500:
+            this.showNotification('top', 'right', 5);
+            break;
+
+        }
+        this.ceduladelete = "";
+      }
+    );
+  }
+
+  cedulasearch!: string;
+  direccionsearch!: string;
+  emailsearch!: string;
+  nombresearch!: string;
+  telefonosearch!: string;
+  contenido2: any;
+  buscarCliente() {
+    try {
+      this.res = this.objetohttp.get(this.urlapiGET + "/cedula/" + this.cedulasearch);
+      this.res.subscribe((datos: any[]) => {
+        this.contenido2 = datos;
+        console.log(this.contenido2);
+        this.direccionsearch = this.contenido2.direccioncliente;
+        this.emailsearch = this.contenido2.emailcliente;
+        this.nombresearch = this.contenido2.nombrecliente;
+        this.telefonosearch = this.contenido2.telefonocliente;
+
+      });
+    }
+    catch (e) {
+      console.error("BK DOWN");
+      this.contenido = []
+    }
+  }
+
+  codeput!: number;
+  actualizarCliente() {
+    this.objetohttp.put(this.urlapiGET + "/cedula/" + this.cedulasearch,
+      {
+        "cedulacliente": this.cedulasearch,
+        "direccioncliente": this.direccionsearch,
+        "emailcliente": this.emailsearch,
+        "nombrecliente": this.nombresearch,
+        "telefonocliente": this.telefonosearch
+      }, {
+      observe: 'response'
+    }).subscribe(
+      (response: any) => {
+
+        this.codeput = response.status;
+
+        switch (this.codeput) {
+          case 200:
+            this.showNotification('top', 'right', 6);
+            break;
+
+          case 224:
+            this.showNotification('top', 'right', 7);
+            break;
+
+          case 500:
+            this.showNotification('top', 'right', 8);
+            break;
+
+        }
+        this.cedulainsert = "";
+        this.direccioninsert = "";
+        this.emailinsert = "";
+        this.nombreinsert = "";
+        this.telefonoinsert = "";
+      }
+    );
+  }
+
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
 
-  //FUNCIÓN DE EJECUCIÓN ANTES DE LA CARGA DE LA PAGINA
   ngOnInit(): void {
-    try { 
+    console.log(this.cedulainsert);
+    try {
       this.res = this.objetohttp.get(this.urlapiGET);
       this.res.subscribe((datos: any[]) => {
         this.contenido = datos;
@@ -42,30 +170,25 @@ export class ClientesComponent implements OnInit {
     }
     catch (e) {
       console.error("BK DOWN");
-      this.contenido=[]
+      this.contenido = []
     }
 
-
-    //Opciones especiales de la tabla, localización y caracteristicas
     this.dtOptions = {
       pagingType: 'full_numbers',
       columns: [{
-        title: 'Codigo',
+        title: 'Cedula',
       },
       {
-        title: 'Iva',
+        title: 'dirección',
       },
       {
-        title: 'NIT proveedor',
+        title: 'email',
       },
       {
         title: 'Nombre',
       },
       {
-        title: 'Precio compra',
-      },
-      {
-        title: 'Precio venta',
+        title: 'telefono',
       },
       ],
       pageLength: 10,
@@ -93,5 +216,90 @@ export class ClientesComponent implements OnInit {
         }
       }
     };
+
+
+
+
+  }
+
+  showNotification(from, align, type) {
+    switch (type) {
+      case 1:
+        this.toastr.success('<b>Dato creado con exito</b>', '', {
+          disableTimeOut: false,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-success alert-with-icon',
+          positionClass: 'toast-' + from + '-' + align
+        });
+        break;
+      case 2:
+        this.toastr.warning('<b>El dato se encuentra duplicado', '', {
+          disableTimeOut: false,
+          enableHtml: true,
+          closeButton: true,
+          toastClass: 'alert alert-danger alert-with-icon',
+          positionClass: 'toast-' + from + '-' + align
+        });
+        break;
+      case 3:
+        this.toastr.error('<b>Error en el servidor BK, consulte con el administrador</b>', '', {
+          disableTimeOut: false,
+          enableHtml: true,
+          closeButton: true,
+          toastClass: 'alert alert-danger alert-with-icon',
+          positionClass: 'toast-' + from + '-' + align
+        });
+        break;
+      case 4:
+        this.toastr.success('<b>Dato eliminado con exito</b>', '', {
+          disableTimeOut: false,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-success alert-with-icon',
+          positionClass: 'toast-' + from + '-' + align
+        });
+        break;
+      case 5:
+        this.toastr.error('<b>Error al eliminar el dato, verifique el que dato exista o no haya un error en el servidor</b>', '', {
+          disableTimeOut: false,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-success alert-with-icon',
+          positionClass: 'toast-' + from + '-' + align
+        });
+        break;
+
+      case 6:
+        this.toastr.success('<b>Dato actualizado con exito</b>', '', {
+          disableTimeOut: false,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-success alert-with-icon',
+          positionClass: 'toast-' + from + '-' + align
+        });
+        break;
+      case 7:
+        this.toastr.warning('<b>Error al eliminar el dato, verifique el que dato exista</b>', '', {
+          disableTimeOut: false,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-success alert-with-icon',
+          positionClass: 'toast-' + from + '-' + align
+        });
+        break;
+
+      case 8:
+        this.toastr.error('<b>Error en el servidor</b>', '', {
+          disableTimeOut: false,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-success alert-with-icon',
+          positionClass: 'toast-' + from + '-' + align
+        });
+        break;
+      default:
+        break;
+    }
   }
 }
