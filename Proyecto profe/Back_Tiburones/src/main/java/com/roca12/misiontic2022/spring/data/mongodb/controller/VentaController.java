@@ -30,6 +30,23 @@ public class VentaController {
 	@Autowired
 	VentaRepository ventaRepository;
 
+	@GetMapping("/ventas/consecutivo")
+	public ResponseEntity<Long> getVentaConsecutivo() {
+		try {
+		ArrayList<Venta> aux = (ArrayList<Venta>) ventaRepository.findAll();
+		long mayor = 0;
+		for (Venta v : aux) {
+			if (v.getCedulacliente() > mayor) {
+				mayor = v.getCedulacliente();
+			}
+		}
+		
+			return new ResponseEntity<>(mayor, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	@GetMapping("/ventas")
 	public ResponseEntity<List<Venta>> getAllVentas() {
 		try {
@@ -83,21 +100,11 @@ public class VentaController {
 		}
 	}
 
-	
-
 	@PostMapping("/ventas")
 	public ResponseEntity<Venta> createVenta(@RequestBody Venta sale) {
 		try {
-			Venta _venta = ventaRepository.save(
-					new Venta(
-							sale.getCedulacliente(), 
-							sale.getCodigoventa(),
-							sale.getDetalleventa(), 
-							sale.getIvaventa(), 
-							sale.getTotalventa(),
-							sale.getValorventa()
-							)
-					);
+			Venta _venta = ventaRepository.save(new Venta(sale.getCedulacliente(), sale.getCodigoventa(),
+					sale.getDetalleventa(), sale.getIvaventa(), sale.getTotalventa(), sale.getValorventa()));
 			return new ResponseEntity<>(_venta, HttpStatus.CREATED);
 		} catch (DuplicateKeyException e) {
 			return new ResponseEntity<>(null, HttpStatus.IM_USED);
@@ -128,7 +135,8 @@ public class VentaController {
 	}
 
 	@PutMapping("/ventas/codigo/{codigo}")
-	public ResponseEntity<Venta> updateVentaByCodigoventa(@PathVariable("codigo") long codigo, @RequestBody Venta sale) {
+	public ResponseEntity<Venta> updateVentaByCodigoventa(@PathVariable("codigo") long codigo,
+			@RequestBody Venta sale) {
 		Venta aux = ventaRepository.findByCodigoventa(codigo).get(0);
 		Optional<Venta> ventaData = Optional.of(aux);
 
@@ -140,7 +148,6 @@ public class VentaController {
 			_venta.setIvaventa(sale.getIvaventa());
 			_venta.setTotalventa(sale.getTotalventa());
 			_venta.setValorventa(sale.getValorventa());
-
 
 			return new ResponseEntity<>(ventaRepository.save(_venta), HttpStatus.OK);
 		} else {
@@ -177,8 +184,6 @@ public class VentaController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-	
 
 	@DeleteMapping("/ventas")
 	public ResponseEntity<HttpStatus> deleteAllVentas() {
