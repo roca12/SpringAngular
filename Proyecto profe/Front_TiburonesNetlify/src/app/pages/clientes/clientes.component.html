@@ -1,0 +1,229 @@
+<div class=" content">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class=" card">
+            <div class=" card-header">
+                <h4 class=" card-title"> <i class="fas fa-file-upload"></i> Inserción de nuevos clientes</h4>
+            </div>
+            <div class=" card-body">
+                <div class="text-center">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Cedula</span>
+                            <input type="text" class="form-control" [(ngModel)]="cedulainsert">
+                            <span class="input-group-text">
+                                <i *ngIf="cedulainsert!=undefined && cedulainsert!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="cedulainsert==undefined || cedulainsert==''"
+                                    class="fas fa-times errorvalidacion"></i>
+                            </span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Dirección</span>
+                            <input type="text" class="form-control" [(ngModel)]="direccioninsert">
+                            <span class="input-group-text">
+
+                                <i *ngIf="direccioninsert!=undefined && direccioninsert!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="direccioninsert==undefined || direccioninsert==''"
+                                    class="fas fa-times errorvalidacion"></i>
+
+                            </span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Email</span>
+                            <input type="text" class="form-control" [(ngModel)]="emailinsert">
+                            <span class="input-group-text">
+
+                                <i *ngIf="emailinsert!=undefined && emailinsert!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="emailinsert==undefined || emailinsert==''"
+                                    class="fas fa-times errorvalidacion"></i>
+
+                            </span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Nombre</span>
+                            <input type="text" class="form-control" [(ngModel)]="nombreinsert">
+                            <span class="input-group-text">
+
+                                <i *ngIf="nombreinsert!=undefined && nombreinsert!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="nombreinsert==undefined || nombreinsert==''"
+                                    class="fas fa-times errorvalidacion"></i>
+
+                            </span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Telefono</span>
+                            <input type="text" class="form-control" [(ngModel)]="telefonoinsert">
+                            <span class="input-group-text">
+
+                                <i *ngIf="telefonoinsert!=undefined && telefonoinsert!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="telefonoinsert==undefined || telefonoinsert==''"
+                                    class="fas fa-times errorvalidacion"></i>
+
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <button class="btn btn-success" (click)="insertarCliente()">
+                        <i class="fas fa-file-upload"></i> Crear cliente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class=" card">
+            <div class=" card-header">
+                <h4 class=" card-title"><i class="fas fa-table"></i> Tabla de Clientes</h4>
+            </div>
+            <div class=" card-body">
+                <div class="container">
+                    <table class="compact nowrap stripe hover row-border" datatable [dtOptions]="dtOptions"
+                        [dtTrigger]="dtTrigger">
+                        <tbody>
+                            <tr *ngFor="let cliente of contenido" class="">
+                                <td class="text-center">{{cliente.cedulacliente}}</td>
+                                <td class="text-center">{{cliente.direccioncliente}}</td>
+                                <td class="text-center">{{cliente.emailcliente}}</td>
+                                <td>{{cliente.nombrecliente}}</td>
+                                <td class="text-center">{{cliente.telefonocliente}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class=" card">
+            <div class=" card-header">
+                <h4 class=" card-title"> <i class="fas fa-file-upload"></i> Actualizar un cliente existente</h4>
+            </div>
+
+            <div class=" card-body">
+                <div class="text-center">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Cedula</span>
+                            <input type="text" class="form-control" [(ngModel)]="cedulasearch"
+                                (change)="buscarCliente()">
+                            <span class="input-group-text">
+                                <i *ngIf="cedulasearch!=undefined && cedulasearch!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="cedulasearch==undefined || cedulasearch==''"
+                                    class="fas fa-times errorvalidacion"></i>
+                            </span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Dirección</span>
+                            <input type="text" class="form-control" [(ngModel)]="direccionsearch">
+                            <span class="input-group-text">
+
+                                <i *ngIf="direccionsearch!=undefined && direccionsearch!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="direccionsearch==undefined || direccionsearch==''"
+                                    class="fas fa-times errorvalidacion"></i>
+
+                            </span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Email</span>
+                            <input type="text" class="form-control" [(ngModel)]="emailsearch">
+                            <span class="input-group-text">
+
+                                <i *ngIf="emailsearch!=undefined && emailsearch!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="emailsearch==undefined || emailsearch==''"
+                                    class="fas fa-times errorvalidacion"></i>
+
+                            </span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Nombre</span>
+                            <input type="text" class="form-control" [(ngModel)]="nombresearch">
+                            <span class="input-group-text">
+
+                                <i *ngIf="nombresearch!=undefined && nombresearch!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="nombresearch==undefined || nombresearch==''"
+                                    class="fas fa-times errorvalidacion"></i>
+
+                            </span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Telefono</span>
+                            <input type="text" class="form-control" [(ngModel)]="telefonosearch">
+                            <span class="input-group-text">
+
+                                <i *ngIf="telefonosearch!=undefined && telefonosearch!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="telefonosearch==undefined || telefonosearch==''"
+                                    class="fas fa-times errorvalidacion"></i>
+
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <button class="btn btn-warning" (click)="actualizarCliente()">
+                        <i class="fas fa-sync"></i> Actualizar cliente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class=" card">
+            <div class=" card-header">
+                <h4 class=" card-title"> <i class="fas fa-trash"></i> Eliminar un cliente</h4>
+            </div>
+            <div class=" card-body">
+                <div class="text-center">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Cedula</span>
+                            <input type="text" class="form-control" [(ngModel)]="ceduladelete">
+                            <span class="input-group-text">
+                                <i *ngIf="ceduladelete!=undefined && ceduladelete!=''"
+                                    class="fas fa-check correctovalidacion"></i>
+
+                                <i *ngIf="ceduladelete==undefined || ceduladelete==''"
+                                    class="fas fa-times errorvalidacion"></i>
+                            </span>
+                        </div>
+
+                        <button class="btn btn-danger" (click)="eliminarCliente()">
+                            <i class="fas fa-trash"></i> Eliminar cliente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
