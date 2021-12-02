@@ -17,7 +17,7 @@ export class ClientesComponent implements OnInit {
 
   res: any;
   contenido: any;
-  urlapiGET: string = "http://localhost:8080/api/clientes";
+  urlapiGET: string = "http://18.208.177.75:8080/api/clientes";
 
   cedulainsert!: string;
   direccioninsert!: string;

@@ -25,7 +25,7 @@ export class ProductosComponent implements OnInit {
   //variable contenedora de contenidos
   contenido: any;
   //url api get
-  urlapiGET: string = "http://localhost:8080/api/productos";
+  urlapiGET: string = "http://18.208.177.75:8080/api/productos";
 
   //aliminando objeto revisor de cambios de la tabla
   ngOnDestroy(): void {

@@ -105,7 +105,7 @@ export class ProductosComponent implements OnInit {
   // Variable to store shortLink from api response
   file!: File; //variable para almacenar los datos
 
-z
+
   // En caso de seleccionar archivo, escojer el primer archivo
   onChange(event: any) {
     this.file = event.target.files[0];

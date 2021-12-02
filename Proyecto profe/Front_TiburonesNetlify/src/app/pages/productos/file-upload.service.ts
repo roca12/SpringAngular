@@ -8,7 +8,7 @@ import { ProductosComponent } from './productos.component';
 
 export class FileUploadService {
 
-  apiURL:string ="http://localhost:8080/api/productos";
+  apiURL:string ="http://18.208.177.75:8080/api/productos";
   
   constructor(private httpobject:HttpClient) { }
 
