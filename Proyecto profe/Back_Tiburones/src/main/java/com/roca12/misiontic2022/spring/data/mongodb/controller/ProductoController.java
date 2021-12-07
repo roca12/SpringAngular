@@ -114,10 +114,10 @@ public class ProductoController {
 		}
 	}
 
-	@GetMapping("/productos/{username}")
-	public ResponseEntity<List<Producto>> findByUsername(@PathVariable("username") String nombre) {
+	@GetMapping("/productos/codigo/{codigo}")
+	public ResponseEntity<List<Producto>> findByCodigo(@PathVariable("codigo") long codigo) {
 		try {
-			List<Producto> productos = productoRepository.findByNombreproducto(nombre);
+			List<Producto> productos = productoRepository.findByCodigoproducto(codigo);
 
 			if (productos.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -1,1 +1,225 @@
-<div class=" content"></div>
+<div class=" content">
+
+    <div>
+        <h1 class="mt-4">Registrar venta</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Permite ingresar una venta
+                realizada a un cliente especifico, realizado por un usuario
+                especifico</li>
+        </ol>
+
+
+        <div class="col-xl-12 col-lg-12 col-md-12">
+
+
+            <h1>
+                <i class="fas fa-file-invoice-dollar"></i> Datos de la venta
+            </h1>
+
+            <div class="row ">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="basic-addon1">Consecutivo</span>
+                        <input type="text" class="form-control text-white" readonly="readonly"
+                            [(ngModel)]="consecutivo">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="basic-addon1">Ciudad</span>
+                        <select [(ngModel)]="ciudad">
+                            <option selected>Seleccionar .....</option>
+                            <option value="1">Bogotá</option>
+                            <option value="2">Medellin</option>
+                            <option value="3">Cali</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <h3>Datos del cliente</h3>
+            <div class="row ">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Cedula
+                            cliente</span> <input type="text" class="form-control" [(ngModel)]="cedulacliente"
+                            (input)="getCliente()">
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-8 col-sm-7">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text " id="basic-addon1">Nombre</span>
+                        <input type="text" class="form-control text-white" readonly="readonly" id="nombre_cliente"
+                            [(ngModel)]="clientedata.nombrecliente">
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="border-top"></div>
+            <h3>Datos de los productos</h3>
+
+
+            <!-- Producto 1 -->
+            <div class="row ">
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Cod.</span>
+                        <input type="text" class="form-control" [(ngModel)]="codprod1">
+                    </div>
+                </div>
+
+                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                    <button type="button" class="btn btn-info text-white btn-sm" (click)="getProducto(1)">
+                        <i class="fas fa-search-dollar"></i>
+                    </button>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                        <input type="text" class="form-control text-white" [(ngModel)]="product1[0].nombreproducto"
+                            readonly="readonly">
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Cant.</span>
+                        <input type="text" class="form-control" [(ngModel)]="cant1" (input)="calcPrecioProd(1)">
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Valor
+                            total</span> <input type="text" class="form-control text-white" [(ngModel)]="precioprod1"
+                            readonly="readonly" value="0">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- producto 2 -->
+            <div class="row ">
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Cod.</span> <input type="text"
+                            class="form-control" [(ngModel)]="codprod2">
+                    </div>
+                </div>
+
+                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                    <button type="button" class="btn btn-info text-white btn-sm" (click)="getProducto(2)">
+                        <i class="fas fa-search-dollar"></i>
+                    </button>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                        <input type="text" class="form-control text-white" [(ngModel)]="product2[0].nombreproducto"
+                            readonly="readonly">
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Cant.</span>
+                        <input type="text" class="form-control" [(ngModel)]="cant2" (input)="calcPrecioProd(2)">
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Valor
+                            total</span> <input type="text" class="form-control text-white" [(ngModel)]="precioprod2"
+                            readonly="readonly" value="0">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- producto 3 -->
+            <div class="row ">
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Cod.</span> <input type="text"
+                            class="form-control" [(ngModel)]="codprod3">
+                    </div>
+                </div>
+
+                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                    <button type="button" class="btn btn-info text-white btn-sm" (click)="getProducto(3)">
+                        <i class="fas fa-search-dollar"></i>
+                    </button>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                        <input type="text" class="form-control text-white" readonly="readonly"
+                            [(ngModel)]="product3[0].nombreproducto">
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Cant.</span>
+                        <input type="text" class="form-control" [(ngModel)]="cant3" (input)="calcPrecioProd(3)">
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Valor
+                            total</span> <input type="text" class="form-control text-white" [(ngModel)]="precioprod3"
+                            readonly="readonly" value="0">
+                    </div>
+                </div>
+
+            </div>
+            <div class="border-top"></div>
+
+            <div class="row justify-content-end mt-3">
+                <div class="col-xl-3 col-lg-3 col-md-7 col-sm-8">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Total
+                            venta</span> <input type="text" class="form-control" [(ngModel)]="totalventa">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-end mt-3">
+                <div class="col-xl-3 col-lg-3 col-md-7 col-sm-8">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Total
+                            IVA</span> <input type="text" class="form-control" [(ngModel)]="totaliva">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-end mt-3">
+                <div class="col-xl-3 col-lg-3 col-md-7 col-sm-8">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Total
+                            venta + IVA</span> <input type="text" class="form-control" [(ngModel)]="totalplusiva">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                    <button type="button" class="btn btn-success btn-sm" (click)="postVenta()">
+                        <i class="fas fa-plus-circle"></i> Registrar venta
+                    </button>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                    <button type="button" class="btn btn-warning btn-sm" (click)="reload()">
+                        <i class="fas fa-sync-alt"></i> Recargar pagina
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
