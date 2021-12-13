@@ -177,6 +177,7 @@ export class VentasComponent implements OnInit {
           case 201:
             this.postConsolidado();
             this.showNotification('top', 'right', 1);
+            
             break;
 
           case 226:
@@ -186,7 +187,6 @@ export class VentasComponent implements OnInit {
           case 500:
             this.showNotification('top', 'right', 3);
             break;
-
         }
 
       }

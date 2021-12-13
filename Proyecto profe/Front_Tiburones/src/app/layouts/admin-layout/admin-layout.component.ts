@@ -12,8 +12,6 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor(private router: Router) {
     router.events.subscribe((val) => {
-      //console.log(this.router.url)
-      //console.log(val)
       if (this.router.url != "/login") {
         this.state = 1;
       } else {
