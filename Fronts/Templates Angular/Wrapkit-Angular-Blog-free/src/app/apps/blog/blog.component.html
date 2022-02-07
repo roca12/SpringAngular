@@ -1,0 +1,73 @@
+<div
+  class="static-slider-head"
+  style="background-image: url(assets/images/landingpage/banner-bg.jpg)"
+>
+  <div class="container">
+    <!-- Row  -->
+    <div class="row justify-content-center">
+      <!-- Column -->
+      <div class="col-lg-9 col-md-6 align-self-center text-center no-trans">
+        <h1 class="title">Free Angular Blog</h1>
+        <h5 class="subtitle op-5">
+          Want a blog app with ng-bootstrap ? Here is the fully workable blog
+          app in which we are giving add post, edit post and delete post.
+        </h5>
+
+        <a
+          href="https://www.wrappixel.com/free-wrapkit-angular-blog"
+          class="btn btn-md m-t-30 btn-success-gradiant font-14"
+          target="blank"
+          >Download Free</a
+        >
+      </div>
+      <!-- Column -->
+    </div>
+  </div>
+</div>
+
+<!-- Row  -->
+<div class="container spacer">
+  <div class="row justify-content-center">
+    <!-- Column -->
+    <div class="col-md-8 no-trans text-center">
+      <h2 class="title">Recent Blogs</h2>
+      <h6 class="subtitle">
+        You can relay on our amazing features list and also our customer
+        services will be great experience for you without doubt and in no-time
+      </h6>
+    </div>
+    <!-- Column -->
+  </div>
+  <div class="row m-t-40 justify-content-center">
+    <!-- Column -->
+    <div
+      class="col-md-8 no-trans border-bottom mb-4"
+      *ngFor="let bl of service.Blogs"
+    >
+      <div class="card" data-aos="flip-left" data-aos-duration="1200">
+        <div class="row">
+          <div class="col-md-2 no-trans">
+            <span class="text-dark font-medium">{{ bl.blogDate }}</span>
+            <h6 class="card-subtitle font-12 mt-1">By John Deo</h6>
+          </div>
+          <div class="col-md-7 no-trans">
+            <h5 class="font-medium cursor-pointer" (click)="viewDetail(bl.id)">
+              {{ bl.heading.substring(0, 50) }}..
+            </h5>
+            <p class="m-t-20">
+              {{ bl.subHeading }}
+            </p>
+          </div>
+          <div class="col-md-3 no-trans">
+            <a
+              class="linking font-medium text-themecolor m-t-10 cursor-pointer"
+            >
+              <span (click)="viewDetail(bl.id)">Show Detail</span>
+              <i class="ti-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

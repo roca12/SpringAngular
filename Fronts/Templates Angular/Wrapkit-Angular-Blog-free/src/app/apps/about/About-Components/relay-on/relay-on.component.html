@@ -1,0 +1,17 @@
+<div class="row m-t-40">
+    <!-- Column -->
+    <div class="col-md-4 wrap-feature1-box" *ngFor='let relay of relayOn'>
+        <div class="card card-shadow" data-aos="fade-right" data-aos-duration="1200">
+            <div class="card-body p-40 text-center">
+                <div class="icon-space display-5">
+                    <i [class]="relay.icon"></i>
+                </div>
+                <h5 class="font-medium">{{relay.field}}</h5>
+                <p class="m-t-20">
+                    {{relay.fieldText}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

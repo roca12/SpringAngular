@@ -21,30 +21,29 @@ import { NgbdModalComponent } from './modal/modal.component';
 import { NgbdModalContent } from './modal/modal.component';
 
 @NgModule({
-  declarations: [
-    SectionsComponent,
-    ButtonsSectionComponent,
-    InputsSectionComponent,
-    CrsSectionComponent,
-    NavigationSectionComponent,
-    TabsSectionComponent,
-    AlertsSectionComponent,
-    TypographySectionComponent,
-    AngularSectionComponent,
-    NucleoSectionComponent,
-    VersionsSectionComponent,
-    NgbdModalComponent,
-    NgbdModalContent
-  ],
-  entryComponents: [NgbdModalContent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    NgbModule,
-    RouterModule,
-    NouisliderModule,
-    JwBootstrapSwitchNg2Module
-  ],
-  exports:[ SectionsComponent ]
+    declarations: [
+        SectionsComponent,
+        ButtonsSectionComponent,
+        InputsSectionComponent,
+        CrsSectionComponent,
+        NavigationSectionComponent,
+        TabsSectionComponent,
+        AlertsSectionComponent,
+        TypographySectionComponent,
+        AngularSectionComponent,
+        NucleoSectionComponent,
+        VersionsSectionComponent,
+        NgbdModalComponent,
+        NgbdModalContent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        NgbModule,
+        RouterModule,
+        NouisliderModule,
+        JwBootstrapSwitchNg2Module
+    ],
+    exports: [SectionsComponent]
 })
 export class SectionsModule { }
